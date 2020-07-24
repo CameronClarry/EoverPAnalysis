@@ -35,8 +35,7 @@ cd ../build
 source */setup.sh
 cd ../run
 mkdir results
-rucio download >>Any JZ0, JZ1, JZ2 File<<
-xAH_run.py --files=>>Any JZ0, JZ1, JZ2 File<< --inputRucio --config=$TestArea/EoverPAnalysis/scripts/xAH_EoverP.py --submitDir=test_run --force direct
+xAH_run.py --files=>>DAOD_EOP_FILE<< --config=$TestArea/EoverPAnalysis/scripts/xAH_EoverP.py --submitDir=test_run --force direct
 ```
 
 ## Submitting Grid Jobs in Release 21
