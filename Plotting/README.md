@@ -31,7 +31,7 @@ Next install xrootd to run over the ntuples stored on atlas eos. Make sure to ch
 ```
 git clone https://github.com/xrootd/xrootd.git
 cd xrootd/bindings/python/
-git checkout stable-5.0.x
+git checkout stable-4.11.x
 python setup_standalone.py install
 cd ../../../
 pip install uproot
