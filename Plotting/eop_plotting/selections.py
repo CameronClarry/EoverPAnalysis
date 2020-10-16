@@ -58,7 +58,8 @@ branches = ["trk_truthProb", "trk_hasTruthParticle"]
 sel_HardScatter = Calculation(HardScatter, branches)
 
 def ParticlePDGID_ABS(trk, pdgID):
-    return ((np.abs(trk["trk_truthPdgId"]) - abs(pdgID)) < 0.1)
+
+    return abs(np.abs(trk["trk_truthPdgId"]) - abs(pdgID)) < 0.1
 
 def ParticlePDGID(trk, pdgID):
     return (np.abs(trk["trk_truthPdgId"] - pdgID)) < 0.1
