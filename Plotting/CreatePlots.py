@@ -24,7 +24,7 @@ filename = "pt_reweighted.root"
 #filename = 
 
 HM = HistogramManager(filename)
-HM.listHistograms()
+HM.listHistograms("*")
 
 base_description = []
 if "Count" in filename:
