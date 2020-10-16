@@ -37,11 +37,6 @@ def book_reweighting(hist_filler, reweighting_flavour):
     if reweighting_flavour == "nominal":
       from variables import calc_trkNearestNeighbourEM2, calc_trkP, calc_EOP, calc_trkPt, calc_trkAverageMu, calc_trkEtaID, calc_trkEtaECAL, calc_trkNPV2, calc_trkCount, calc_trkNClusters, calc_trkNClusters_EM, calc_trkNClusters_HAD, calc_trkNClusters_emlike, calc_trkNClusters_hadlike, calc_TruthMomentum, calc_trkEta
 
-      hist_filler.apply_selection_for_channel("LowMuDataTightIso", sel_TightIso) #Tighter isolation requirement
-      hist_filler.apply_selection_for_channel("PythiaJetJetTightIso", sel_TightIso) #Tighter isolation requirement
-      hist_filler.apply_selection_for_channel("PythiaJetJetHardScatter", sel_Truth) #Those tracks truth matched to pions
-      hist_filler.apply_selection_for_channel("PythiaJetJetHardScatterTightIso", sel_Truth + sel_TightIso) #Tighter isolation requirement
-
       LowMuData_PythiaJetJet_Count_Reweight_file = ROOT.TFile(os.path.join(base_directory,"ReweightingHistograms/LowMuData_PythiaJetJet_Count_Reweight.root"),"READ")
       hist = LowMuData_PythiaJetJet_Count_Reweight_file.Get("LowMuData_PythiaJetJet_Count_Reweight")
       hist_filler.weight_calculator.add_reweight_histogram("PythiaJetJet", [calc_trkCount], hist, selection = [sel_Event])
