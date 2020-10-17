@@ -23,8 +23,9 @@ if foundRootNumpy:
     from root_numpy import fill_hist, fill_profile
 
 if foundAtlasPlots:
-    from atlasplots import atlas_style as astyle
-    astyle.SetAtlasStyle()
+    from atlasplots import atlasstyle as astyle
+    #astyle.SetAtlasStyle()
+    astyle.atlas_style()
 
 global_scope = []
 CANVAS_COUNTER = 1
