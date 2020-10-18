@@ -73,16 +73,16 @@ def book_reweighting(hist_filler, reweighting_flavour):
 
       #hist_filler.create_subchannel_for_channel("LowMuDataHadIso","LowMuData", [sel_HadIso]) #Tighter isolation requirement
       #hist_filler.create_subchannel_for_channel("PythiaJetJetHadIso","PythiaJetJet", [sel_HadIso]) #Tighter isolation requirement
-      hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterPionPos", "PythiaJetJetHardScatter", pion_pos_selections)
-      hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterPionNeg", "PythiaJetJetHardScatter", pion_neg_selections)
+      #hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterPionPos", "PythiaJetJetHardScatter", pion_pos_selections)
+      #hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterPionNeg", "PythiaJetJetHardScatter", pion_neg_selections)
 
-      hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterKaonPos", "PythiaJetJetHardScatter", kaon_pos_selections)
-      hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterKaonNeg", "PythiaJetJetHardScatter", kaon_neg_selections)
+      #hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterKaonPos", "PythiaJetJetHardScatter", kaon_pos_selections)
+      #hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterKaonNeg", "PythiaJetJetHardScatter", kaon_neg_selections)
 
-      hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterProtonPos", "PythiaJetJetHardScatter", proton_pos_selections)
-      hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterProtonNeg", "PythiaJetJetHardScatter", proton_neg_selections)
+      #hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterProtonPos", "PythiaJetJetHardScatter", proton_pos_selections)
+      #hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterProtonNeg", "PythiaJetJetHardScatter", proton_neg_selections)
 
-      hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterOther", "PythiaJetJetHardScatter", other_selections)
+      #hist_filler.create_subchannel_for_channel("PythiaJetJetHardScatterOther", "PythiaJetJetHardScatter", other_selections)
 
 
       for i, eta_bin_selection in enumerate(eta_bin_selections):
