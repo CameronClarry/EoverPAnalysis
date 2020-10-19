@@ -677,8 +677,8 @@ def fill_histograms(hist_filler, outputRootFileName):
     create_eop_histograms(hist_filler, base_selection, eta_ranges, p_bins_for_eta_range, description) 
     p_bins_for_eta_range = []
     for eta_range in eta_ranges:
-        p_bins_min = get_p(0.5, (eta_range[0] + eta_range[1]) / 2.0)
-        p_bins = get_log_bins(p_bins_min, 40.05, 300)
+        #p_bins_min = get_p(0.5, (eta_range[0] + eta_range[1]) / 2.0)
+        p_bins = get_log_bins(0.5, 40.05, 300)
         p_bins_for_eta_range.append(p_bins)
     create_spectrum_plots(hist_filler, base_selection, eta_ranges, p_bins_for_eta_range, description) 
 
