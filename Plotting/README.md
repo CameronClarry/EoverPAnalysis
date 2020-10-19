@@ -130,9 +130,40 @@ condor_submit condor/test/test_scripts/condor_test.sub
 ```
 
 ## Upon job completion
+An useful feature of hadd, is the ability to parallelize the h-addition of files. Call had with the flag -j ncores to use this feature.
 ```
-hadd Plots_hadded.root Plots*.root
+hadd Plots_hadded.root Plots\*.root
 ```
+
+## Create Reweighing histograms
+The macro responsible for reweighing histograms can be found in the file ReweightingHistograms/CreateReweightingHistogram.py. There are a series of flags that you need to pass to the macro to create the reweighting.
+```
+python ReweightingHistograms/CreateReweightingHistogram.py >>args<<
+```
+
+## Apply Rewighing when filling histograms
+In the filling script one could define a histogram as below. Note the definition of the selection and the variable that is being filled.
+```
+#count the number of events in each channel
+histogram_name = "EventCount"
+selections = [sel_Event]
+trkCountHist = hist_filler.book_histogram_fill(histogram_name,\
+calc_trkCount,\
+selections = selections,\
+bins = 1,\
+range_low = -0.5,\
+range_high = +0.5,\
+xlabel ='Always 0',\
+ylabel = 'Number Events')
+```
+
+One could then create a reweighting histogram, and add it as a weight to the histogram_filler. notice that the variable (calc_trkCount) and the selection are the same as when the reweighting was defined, as above. The Reweighting file contains a histogram of LowMuData divided by the same histogram for Pythia JetJet. This would allow the code to reweight the events when filling the histograms, so that the distribition in MC is forced to agree with data.
+```
+LowMuData_PythiaJetJet_Count_Reweight_file = ROOT.TFile(os.path.join(base_directory,"ReweightingHistograms/LowMuData_PythiaJetJet_Count_Reweight.root    "),"READ")
+hist = LowMuData_PythiaJetJet_Count_Reweight_file.Get("LowMuData_PythiaJetJet_Count_Reweight")
+hist_filler.weight_calculator.add_reweight_histogram("PythiaJetJet", [calc_trkCount], hist, selection = [sel_Event])
+```
+
 
 ## Create TTrees to use for binning. These contain information about the total # of tracks and std deviation.
 ```
