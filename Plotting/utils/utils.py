@@ -58,10 +58,6 @@ inclusive_files["PythiaJetJetTightIso"] = [\
 "user.luadamek.mc16_13TeV.361020.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ0W.EoverP_Jan7_hist/",\
 "user.luadamek.mc16_13TeV.361021.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ1W.EoverP_Jan7_hist/",\
 "user.luadamek.mc16_13TeV.361022.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ2W.EoverP_Jan7_hist/"]
-inclusive_files["PythiaJetJetTightIso"] = [\
-"user.luadamek.mc16_13TeV.361020.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ0W.EoverP_Jan7_hist/",\
-"user.luadamek.mc16_13TeV.361021.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ1W.EoverP_Jan7_hist/",\
-"user.luadamek.mc16_13TeV.361022.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ2W.EoverP_Jan7_hist/"]
 inclusive_files["PythiaJetJetHardScatter"] = [\
 "user.luadamek.mc16_13TeV.361020.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ0W.EoverP_Jan7_hist/",\
 "user.luadamek.mc16_13TeV.361021.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ1W.EoverP_Jan7_hist/",\
@@ -70,6 +66,7 @@ inclusive_files["PythiaJetJetHardScatterTightIso"] = [\
 "user.luadamek.mc16_13TeV.361020.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ0W.EoverP_Jan7_hist/",\
 "user.luadamek.mc16_13TeV.361021.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ1W.EoverP_Jan7_hist/",\
 "user.luadamek.mc16_13TeV.361022.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ2W.EoverP_Jan7_hist/"]
+
 #inclusive_files["PythiaJetJetPionsReweighted"] = [\
 #"user.luadamek.mc16_13TeV.361020.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ0W.EoverP_Jan7_hist/",\
 #"user.luadamek.mc16_13TeV.361021.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ1W.EoverP_Jan7_hist/",\
@@ -110,6 +107,7 @@ inclusive_files["PythiaJetJetHardScatterTightIso"] = [\
 #"user.luadamek.mc16_13TeV.361020.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ0W.EoverP_Jan7_hist/",\
 #"user.luadamek.mc16_13TeV.361021.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ1W.EoverP_Jan7_hist/",\
 #"user.luadamek.mc16_13TeV.361022.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ2W.EoverP_Jan7_hist/"]
+
 identified_files = {}
 identified_files["LowMuData"] = [\
 "user.luadamek.data17_13TeV.00341294.physics_MinBias.EoverP_Jan7.root",\

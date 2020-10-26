@@ -45,3 +45,19 @@ Thumbs.db
 
 # swp files #
 *.swp
+
+*.root
+
+Plotting/JES_ResponseFitter/
+Plotting/atlas-plots/
+Plotting/condor/
+Plotting/cython_cache/
+Plotting/grid_proxy
+Plotting/lcg_virtualenv/
+Plotting/test_1.root
+Plotting/venv_EOPPlotting/
+Plotting/xrootd/
+Plotting/Plots/
+
+Plotting/prep_submission_inclusive.sh
+Plotting/submit_inclusive.sh
