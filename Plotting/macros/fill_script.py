@@ -10,7 +10,8 @@ import os
 from math import pi
 import pickle
 import numpy as np
-from selections import EtaBin, PBin, sel_SubleadingTrack, sel_Event, sel_hasHADExtrapolation, NTRTX
+from selections import EtaBin, PBin, sel_SubleadingTrack, sel_Event, sel_hasHADExtrapolation, NTRTX, sel_pt_sevengev
+from variables import calc_transverse_energy, calc_transverse_energy_lcw, calc_EOP, calc_LCW_EOP
 
 def write_histograms(histogram_dictionary, outFile):
     outFile.cd()
@@ -47,6 +48,8 @@ proton_neg_selections = [sel_ProtonNeg, sel_HardScatter]
 other_selections = [sel_Other, sel_HardScatter]
 sel_Truth = [sel_HardScatter]
 sel_TightIso = [sel_TightIso]
+
+eta_edges_ID = np.linspace(-2.5, +2.5 , 25)
 
 #This is a script that fills the histograms for
 def fill_histograms(hist_filler, outputRootFileName):
