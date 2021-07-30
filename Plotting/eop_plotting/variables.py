@@ -310,6 +310,11 @@ def EOP(trk):
 branches = ["trk_ClusterEnergy_EM_200", "trk_ClusterEnergy_HAD_200", "trk_p"]
 calc_EOP = Calculation(EOP, branches)
 
+def LCW_EOP(trk):
+    return (trk["trk_LCWClusterEnergy_EM_200"] + trk["trk_LCWClusterEnergy_HAD_200"])/trk["trk_p"]
+branches = ["trk_LCWClusterEnergy_EM_200", "trk_LCWClusterEnergy_HAD_200", "trk_p"]
+calc_LCW_EOP = Calculation(LCW_EOP, branches)
+
 def DPhi(trk):
     dphi = np.ones(len(trk)) * 100000000.0
     hasEMB2 = np.abs(trk["trk_phiEMB2"]) < 40
@@ -332,9 +337,18 @@ def DEta(trk):
     deta[hasEME2] = np.abs(trk["trk_etaID"] - trk["trk_etaEME2"])[hasEME2]
     deta[hasEMB2] = np.abs(trk["trk_etaID"] - trk["trk_etaEMB2"])[hasEMB2]
     return deta
-
 branches = ["trk_etaEMB2", "trk_etaEME2","trk_etaID"]
 calc_trkDEta = Calculation(DEta, branches)
+
+def transverse_energy(trk):
+    return (trk["trk_ClusterEnergy_EM_200"] + trk["trk_ClusterEnergy_HAD_200"]) / np.cosh(trk["trk_etaID"])
+branches = ["trk_etaID", "trk_ClusterEnergy_EM_200", "trk_ClusterEnergy_HAD_200"]
+calc_transverse_energy = Calculation(transverse_energy, branches)
+
+def transverse_energy_lcw(trk):
+    return (trk["trk_LCWClusterEnergy_EM_200"] + trk["trk_LCWClusterEnergy_HAD_200"]) / np.cosh(trk["trk_etaID"])
+branches = ["trk_etaID", "trk_LCWClusterEnergy_EM_200", "trk_LCWClusterEnergy_HAD_200"]
+calc_transverse_energy_lcw = Calculation(transverse_energy_lcw, branches)
 
 def weight(trk, isData):
     if not isData:
