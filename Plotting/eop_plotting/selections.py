@@ -15,6 +15,18 @@ def HadIso(trk):
     return trk["trk_nearest_dR_HAD"] > 0.4
 sel_HadIso = Calculation(HadIso, ["trk_nearest_dR_HAD"])
 
+def pos(trk):
+    return trk["trk_charge"] > 0
+sel_pos_trk = Calculation(pos, ["trk_charge"])
+
+def neg(trk):
+    return np.logical_not(pos(trk))
+sel_neg_trk = Calculation(neg, ["trk_charge"])
+
+def pt_sevengev(trk):
+    return trk["trk_p"] > 7.0
+sel_pt_sevengev = Calculation(pt_sevengev, ["trk_p"])
+
 def hasHADExtrapolation(trk):
     return (trk["trk_phiHEC1"] > -100) | (trk["trk_phiTileBar2"] > -100) | (trk["trk_phiTileExt1"] > -100)
 branches =["trk_phiHEC1", "trk_phiTileBar2", "trk_phiTileExt1"]
