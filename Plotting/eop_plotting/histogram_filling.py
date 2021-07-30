@@ -243,6 +243,44 @@ class HistogramFiller:
                 fill_hist(histogram_dictionary[channel], to_fill, to_weight)
         return histogram_dictionary
 
+    def fill_2d_tprofile_histograms(self, histogram_name, data, variable_x, variable_y, selections = [], bins_x = 1, range_low_x = 0.000001, range_high_x=1. - 0.00001,  xlabel ="", bins_y=1, range_low_y=0.000001, range_high_y=1. - 0.00001, ylabel = "", zlabel="",):
+        '''the 2-d histgram with variable_x and variable_y drawn'''
+        name_to_fill_x = variable_x.name
+        name_to_fill_y = variable_y.name
+        variables = [variable_x, variable_y]
+        histogram_dictionary = {}
+        for channel in self.channels:
+            if (type(bins_x) == list and type(bins_y) == list):
+                bins_array_x = array('d',bins_x)
+                bins_array_y = array('d',bins_y)
+                histogram_dictionary[channel] = ROOT.TProfile2D(histogram_name + channel, histogram_name + channel, len(bins_array_x)-1, bins_array_x, len(bins_array_y)-1, bins_array_y)
+            elif (type(bins_x) != list and type(bins_y) != list):
+                histogram_dictionary[channel] = ROOT.TProfile2D(histogram_name + channel, histogram_name + channel, bins_x, range_low_x + 0.0000001, range_high_x - 0.000001, bins_y, range_low_y+0.0000001, range_high_y + 0.0000001)
+            else:
+                raise ValueError("both of the bins_x and bins_y variables need to be the same type. Both integers, or both lists")
+            histogram_dictionary[channel].GetXaxis().SetTitle(xlabel)
+            histogram_dictionary[channel].GetYaxis().SetTitle(ylabel)
+            histogram_dictionary[channel].GetZaxis().SetTitle(zlabel)
+            histogram_dictionary[channel].GetZaxis().SetTitleSize(0.035)
+            histogram_dictionary[channel].GetZaxis().SetTitleOffset(1.35)
+            histogram_dictionary[channel].Sumw2()
+
+        for channel in self.channels:
+            for filename in self.channel_files[channel]:
+                variable_dict, selection_dict, weights = data[channel][filename]
+                total_selection = np.ones(len(weights)) > 0.0
+                for selection in selections:
+                    total_selection &= selection_dict[selection.name]
+                to_weight = weights[total_selection]
+                n_sel = len(to_weight)
+                to_fill = np.zeros((n_sel,2))
+                to_fill[:,0] = variable_dict[name_to_fill_x][total_selection]
+                to_fill[:,1] = variable_dict[name_to_fill_y][total_selection]
+                if self.verbose: print(to_fill)
+                if self.verbose: print(to_weight)
+                if self.verbose: print("Filling Variable " + variable.name)
+                fill_profile(histogram_dictionary[channel], to_fill, to_weight)
+        return histogram_dictionary
 
     def fill_tprofile_histograms(self, histogram_name, data, variable_x, variable_y, selections = [], bins = 1, range_low = 0.000001, range_high=1. - 0.00001,  xlabel ="", ylabel="",):
         '''Get a TProfile histogram with variable_y profiled against variable_x, after selections selections have been applied'''
