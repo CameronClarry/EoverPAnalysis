@@ -10,7 +10,7 @@
 #include "xAODTruth/TruthParticle.h"
 #include "xAODAnaHelpers/HelperFunctions.h"
 #include <EoverPAnalysis/EoverPTreeAlgo.h>
-#include "AsgTools/MessageCheck.h"
+//#include "AsgTools/MessageCheck.h"
 #include "TMath.h"
 
 #include "xAODTruth/TruthParticleContainer.h"
@@ -93,18 +93,27 @@ EL::StatusCode EoverPTreeAlgo :: initialize ()
      m_radiusCutList.push_back(a);
 
   Info("initialize()", "EoverPTreeAlgo");
+  Info("initialize()", m_inTrackContainerName.c_str());
+  Info("initialize()", m_detailStr.c_str());
+
+  Info("initialize()", "doing m_event = wk()->xaodEvent();");
   m_event = wk()->xaodEvent();
+  Info("initialize()", "doing m_store = wk()->xaodStore();");
   m_store = wk()->xaodStore();
 
+  Info("initialize()", "Registering Output Tree");
   // setup the tree output
   ANA_MSG_DEBUG("Registering Output Tree");
   TFile* treeFile = wk()->getOutputFile ("tree");
+  Info("initialize()", "making directory");
   treeFile->mkdir(m_name.c_str());
+  Info("initialize()", "changing directory");
   treeFile->cd(m_name.c_str());
 
   ANA_MSG_DEBUG("Tree Regiestered");
   std::string treeName = m_name+"_tree";
   if (m_tree == nullptr)
+	Info("initialize()", "Creating ttree");
     m_tree = new TTree(treeName.c_str(),treeName.c_str());
   if (m_tree ==  nullptr) {
     Error("execute()","Failed to instantiate output tree!");
@@ -112,17 +121,22 @@ EL::StatusCode EoverPTreeAlgo :: initialize ()
   }
 
   ANA_MSG_DEBUG("Adding a tree with name " + treeName);
-  treeFile->ls(m_name.c_str());
+  Info("initialize()", "listing directory");
+  //treeFile->ls(m_name.c_str());
 
   ANA_MSG_DEBUG("Setting the directory of the tree");
+  Info("initialize()", "Getting directory of file");
   TDirectory *dir = treeFile->GetDirectory(m_name.c_str());
+  Info("initialize()", "Setting directory of tree");
   if (dir) m_tree->SetDirectory(dir);
   else ANA_MSG_ERROR("The output directory doesn't exist!");
       
   ANA_MSG_DEBUG("Adding the tree to the output");
+  Info("initialize()", "Adding the tree to the output");
   wk()->addOutput( m_tree );
 
   ANA_MSG_DEBUG("Registering Tree Branches");
+  Info("initialize()", "Registering tree branches");
   //m_tree->Branch("eventNumber",   &m_eventNumber,   "EventNumber/l"); I don't think we need this variable
   m_tree->Branch("trkIndex",      &m_trkIndex);
   m_tree->Branch("trk_etaID", &trk_etaID);
@@ -156,8 +170,10 @@ EL::StatusCode EoverPTreeAlgo :: initialize ()
   }
 
   //All energy deposits in EM-Calorimeter and HAD-Calorimeter
+  Info("initialize()", "Starting loop for making branches");
   for (std::string energyCalib : m_energyCalibList){
       for (std::string radiusCut : m_radiusCutList){
+          Info("initialize()", "Inside loop of making branches for clusters/cuts");
           ANA_MSG_INFO("Made ttree branches for energy of clusters at scale " + energyCalib + " and cut " + radiusCut);
           std::string key_EM = "trk_" + energyCalib + "_EM_" + radiusCut;
           m_energyVariablesForTree[key_EM] = 0.0;

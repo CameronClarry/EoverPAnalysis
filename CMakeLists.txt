@@ -5,25 +5,6 @@
 # Declare the package name:
 atlas_subdir( EoverPAnalysis )
 
-# Declare the package's dependencies:
-atlas_depends_on_subdirs( PUBLIC
-                          xAODAnaHelpers
-                          Control/AthLinks
-                          Control/AthContainers
-                          AsgExternal/Asg_FastJet
-                          PhysicsAnalysis/D3PDTools/EventLoop
-                          PhysicsAnalysis/D3PDTools/AnaAlgorithm
-                          Control/xAODRootAccess
-                          Event/xAOD/xAODEventInfo
-                          Event/xAOD/xAODJet
-                          Event/xAOD/xAODTracking
-                          Event/xAOD/xAODCaloEvent
-                          Event/xAOD/xAODTruth
-                          Control/AthToolSupport/AsgTools
-                          InnerDetector/InDetRecTools/InDetTrackSelectionTool
-                          InnerDetector/InDetRecTools/TrackVertexAssociationTool
-)
-
 # Find the needed external(s):
 find_package( ROOT COMPONENTS Core RIO Hist Tree )
 find_package( Eigen REQUIRED )

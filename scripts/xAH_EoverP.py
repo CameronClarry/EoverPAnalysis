@@ -1,7 +1,8 @@
 # E/p analysis for run 2
 # Lukas Adamek (lukas.adamek@cern.ch)
 
-from xAH_config import xAH_config
+#from xAH_config import xAH_config
+from xAODAnaHelpers import Config as xAH_config
 c = xAH_config()
 
 import shlex,argparse
@@ -26,7 +27,7 @@ trks_tight_isolated_vertex = trks_tight_isolated + "VertexAssociated"
 radiusCuts = "025,050,075,100,125,150,175,200,225,250,275,300"
 
 # Set up the Basic Event Selection for 2017 low-mu data
-c.setalg("BasicEventSelection", {"m_name": "BasicEventSelection",
+c.algorithm("BasicEventSelection", {"m_name": "BasicEventSelection",
                                  "m_applyGRLCut": args.isData,
                                  "m_doPUreweighting": False,
                                  "m_applyPrimaryVertexCut": True,
@@ -46,14 +47,14 @@ c.setalg("BasicEventSelection", {"m_name": "BasicEventSelection",
 
 
 '''Sort the tracks by pt first'''
-c.setalg("TrackSorter", {"m_name" : "TrackSorting",\
+c.algorithm("TrackSorter", {"m_name" : "TrackSorting",\
                          "m_inTrackContainerName":trks_unsorted,\
                          "m_sort":"Pt",\
                          "m_sortedTrackContainerName" : trks,\
                          })
 
 # Create new energy sum decorations for the tracks
-c.setalg("TrackEnergyDecorator", {"m_name": "TrackEnergyDecoratorAlgoUno",
+c.algorithm("TrackEnergyDecorator", {"m_name": "TrackEnergyDecoratorAlgoUno",
 				  "m_energySumName":"TotalCalibHitEnergy",
                                   "m_inTrackContainerName": trks,
                                   "m_radiusCutCommaList":radiusCuts,
@@ -61,7 +62,7 @@ c.setalg("TrackEnergyDecorator", {"m_name": "TrackEnergyDecoratorAlgoUno",
 				  })
 
 # Create new energy sum decorations for the tracks
-c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoDos",
+c.algorithm("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoDos",
 				   "m_energySumName":"TotalPhotonBackgroundCalibHitEnergy",
                                   "m_inTrackContainerName": trks,
 				   "m_radiusCutCommaList":radiusCuts,
@@ -69,7 +70,7 @@ c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoDos",
 				  })
 
 # Create new energy sum decorations for the tracks
-c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoTres",
+c.algorithm("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoTres",
 				   "m_energySumName":"TotalHadronicBackgroundCalibHitEnergy",
 				   "m_inTrackContainerName": trks,
 				   "m_radiusCutCommaList":radiusCuts,
@@ -77,7 +78,7 @@ c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoTres",
 				  })
 
 # Create new energy sum decorations for the tracks
-c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoQuaddro",
+c.algorithm("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoQuaddro",
 				   "m_energySumName":"CalibEMActiveEnergy",
 				   "m_inTrackContainerName": trks,
 				   "m_radiusCutCommaList":radiusCuts,
@@ -85,7 +86,7 @@ c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoQuaddro",
 				  })
 
 # Create new energy sum decorations for the tracks
-c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoCenqo",
+c.algorithm("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoCenqo",
 				   "m_energySumName":"CalibEMInactiveEnergy",
 				   "m_inTrackContainerName": trks,
 				   "m_radiusCutCommaList":radiusCuts,
@@ -93,7 +94,7 @@ c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoCenqo",
 				  })
 
 # Create new energy sum decorations for the tracks
-c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoQuaddroAgain",
+c.algorithm("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoQuaddroAgain",
 				   "m_energySumName":"CalibNonEMActiveEnergy",
 				   "m_inTrackContainerName": trks,
 				   "m_radiusCutCommaList":radiusCuts,
@@ -101,7 +102,7 @@ c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoQuaddroAga
 				  })
 
 # Create new energy sum decorations for the tracks
-c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoCenqoHereWeGo",
+c.algorithm("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoCenqoHereWeGo",
 				   "m_energySumName":"CalibNonEMInactiveEnergy",
 				   "m_inTrackContainerName": trks,
 				   "m_radiusCutCommaList":radiusCuts,
@@ -109,14 +110,14 @@ c.setalg("TrackEnergyDecorator", { "m_name": "TrackEnergyDecoratorAlgoCenqoHereW
 				  })
 
 # Fill histograms with tracking details, passing only basic event selection
-c.setalg("TrackHistsAlgo", {"m_name": "Tracks_BasicEvtSel",
+c.algorithm("TrackHistsAlgo", {"m_name": "Tracks_BasicEvtSel",
                             "m_inContainerName": trks,
                             "m_detailStr": "2D IPDetails HitCounts Chi2Details",
                             "m_msgLevel": "info"
 			               })
 
 # track selection algorithm
-c.setalg("InDetTrackSelectionToolAlgo", {"m_name": "Sel_" + trks_loose,
+c.algorithm("InDetTrackSelectionToolAlgo", {"m_name": "Sel_" + trks_loose,
 					 "m_inputTrackContainer": trks,
 					 "m_minPt": 0.5,
 					 "m_CutLevel": "Loose",
@@ -126,13 +127,13 @@ c.setalg("InDetTrackSelectionToolAlgo", {"m_name": "Sel_" + trks_loose,
 
 
 # Fill histograms with tracking details, after LoosePrimary selection
-c.setalg("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_loose,
+c.algorithm("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_loose,
                             "m_inContainerName": trks_loose,
                             "m_detailStr": "2D IPDetails HitCounts Chi2Details",
                             "m_msgLevel": "info"
 			                })
 
-c.setalg("TrackExtrapolationIsolationTool", {"m_name": "TrackIso_" + trks_loose,
+c.algorithm("TrackExtrapolationIsolationTool", {"m_name": "TrackIso_" + trks_loose,
 					     "m_inputTrackContainer": trks_loose,
 					     "m_outputTrackContainer": trks_loose_isolated,
 					     "m_trkIsoDRmax": 0.4,
@@ -140,13 +141,13 @@ c.setalg("TrackExtrapolationIsolationTool", {"m_name": "TrackIso_" + trks_loose,
 					     })
 
 # Fill histograms with tracking details, after LoosePrimary + Isolation selection
-c.setalg("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_loose_isolated,
+c.algorithm("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_loose_isolated,
                             "m_inContainerName": trks_loose_isolated,
                             "m_detailStr": "2D IPDetails HitCounts Chi2Details",
                             "m_msgLevel": "info"
 			               })
 
-c.setalg("InDetTrackSelectionToolAlgo", {"m_name": "Sel_" + trks_tight_isolated ,
+c.algorithm("InDetTrackSelectionToolAlgo", {"m_name": "Sel_" + trks_tight_isolated ,
 					 "m_inputTrackContainer": trks_loose_isolated,
 					 "m_outputTrackContainer": trks_tight_isolated,
 					 "m_CutLevel": "TightPrimary",
@@ -154,51 +155,53 @@ c.setalg("InDetTrackSelectionToolAlgo", {"m_name": "Sel_" + trks_tight_isolated 
 					 })
 
 # Fill histograms with tracking details, after LoosePrimary + Isolation + tight primary selection
-c.setalg("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_tight_isolated,
+c.algorithm("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_tight_isolated,
                             "m_inContainerName": trks_tight_isolated,
                             "m_detailStr": "2D IPDetails HitCounts Chi2Details",
                             "m_msgLevel": "info"
 			               })
 
 if not args.isSingleParticle:
-    c.setalg("TightTrackVertexAssociationToolAlgo", {"m_name":"TrackVertexAssociationTool",
+    c.algorithm("TrackVertexAssociationToolAlgo", {"m_name":"LooseTrackVertexAssociationTool",
 						 "m_inputTrackContainer": trks_loose_isolated,
 						 "m_outputTrackContainer": trks_loose_isolated_vertex,
-						 "m_dzSinTheta_cut": 1.5,
-						 "m_d0_cut": 1.5,
+                         "m_workingPoint": "Old_Tight",
+						 #"m_dzSinTheta_cut": 1.5,
+						 #"m_d0_cut": 1.5,
 						 "m_msgLevel": "info",
 						 })
 else:
-    c.setalg("TrackSorter", {"m_name" : "TrackSortingRenameOne",\
+    c.algorithm("TrackSorter", {"m_name" : "TrackSortingRenameOne",\
                          "m_inTrackContainerName":trks_loose_isolated,\
                          "m_sort":"Pt",\
                          "m_sortedTrackContainerName" : trks_loose_isolated_vertex,\
                          })
 
 # Fill histograms with tracking details, after LoosePrimary + Isolation + vertex association cut
-c.setalg("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_loose_isolated_vertex,
+c.algorithm("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_loose_isolated_vertex,
                             "m_inContainerName": trks_loose_isolated_vertex,
                             "m_detailStr": "2D IPDetails HitCounts Chi2Details",
                             "m_msgLevel": "info"
 			               })
 
 if not args.isSingleParticle:
-    c.setalg("TightTrackVertexAssociationToolAlgo", {"m_name":"TrackVertexAssociationTool",
+    c.algorithm("TrackVertexAssociationToolAlgo", {"m_name":"TrackVertexAssociationTool",
 						 "m_inputTrackContainer": trks_tight_isolated,
 						 "m_outputTrackContainer": trks_tight_isolated_vertex,
-						 "m_dzSinTheta_cut": 1.5,
-						 "m_d0_cut": 1.5,
+                         "m_workingPoint": "Old_Tight",
+						 #"m_dzSinTheta_cut": 1.5,
+						 #"m_d0_cut": 1.5,
 						 "m_msgLevel": "info",
 						 })
 else:
-    c.setalg("TrackSorter", {"m_name" : "TrackSortingRenameOne",\
+    c.algorithm("TrackSorter", {"m_name" : "TrackSortingRenameOne",\
                          "m_inTrackContainerName":trks_tight_isolated,\
                          "m_sort":"Pt",\
                          "m_sortedTrackContainerName" : trks_tight_isolated_vertex,\
                          })
 
 # Fill histograms with tracking details, after LoosePrimary + Isolation + Tight Primary + vertex association cut
-c.setalg("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_tight_isolated_vertex,
+c.algorithm("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_tight_isolated_vertex,
                             "m_inContainerName": trks_tight_isolated_vertex,
                             "m_detailStr": "2D IPDetails HitCounts Chi2Details",
                             "m_msgLevel": "info"
@@ -207,7 +210,7 @@ c.setalg("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_tight_isolated_vertex,
 #### Make E/p ttree
 for track_container in [trks_loose_isolated, trks_loose_isolated_vertex]:#, trks_tight_isolated, trks_tight_isolated_vertex]:
         # E/p histograms with LoosePrimary track selection
-        c.setalg("EoverPTreeAlgo", {"m_name": "LA_EoverP_" + track_container,
+        c.algorithm("EoverPTreeAlgo", {"m_name": "LA_EoverP_" + track_container,
 				    "m_inTrackContainerName": track_container,
 				    "m_energyCalibCommaList": "ClusterEnergy,CellEnergy,LCWClusterEnergy,TotalCalibHitEnergy,TotalPhotonBackgroundCalibHitEnergy,TotalHadronicBackgroundCalibHitEnergy,CalibEMActiveEnergy,CalibEMInactiveEnergy,CalibNonEMActiveEnergy,CalibNonEMInactiveEnergy",
 				    "m_radiusCutCommaList": radiusCuts,
