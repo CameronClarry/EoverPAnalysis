@@ -7,12 +7,47 @@ For questions please contact: lukas.adamek[at]cern.ch, or joakim.olsson[at]cern.
 Package created by Joakim Olsson
 Ported to release 21 and modified by: Lukas Adamek (lukas.adamek[at]cern.ch)
 
+## Setup in Release 22
+
+First setup the folders for running, building and the source files
+```
+mkdir myAnalysis; cd myAnalysis
+mkdir source run build run/results
+cd source
+```
+
+Clone the packages that this analysis depends on. 
+```
+git clone http://github.com/luadamek/EoverPAnalysis
+git clone http://github.com/UCATLAS/xAODAnaHelpers xAODAnaHelpers
+cd xAODAnaHelpers && git checkout aaf7fc3fde9819bcb5cc3737df0226e275110671 && cd ..
+git clone https://github.com/mattleblanc/IDTrackSel.git
+cd IDTrackSel && git checkout 13211645b1aa6c723d4f2c0b3492d5009dde8ee5 && cd ..
+asetup AnalysisBase,24.2.6,here
+cd ../build
+cmake ../source && make
+```
+
+## Running locally in Release 22
+
+The Analysis configurations are located in the scripts folder, called xAH_EoverP.py. These scripts are responsible for booking/running EoverP xAH Algorithms to create ttrees for four different track selections, and store information about calorimeter energy deposits at the cell, EM, and LCW scale. To run a test job locally, try the following lines:
+```
+cd ../build
+source */setup.sh
+cd ../run
+# For MC
+xAH_run.py --files=>>DAOD_EOP_FILE<< --config=$TestArea/EoverPAnalysis/scripts/xAH_EoverP.py --submitDir=test_run --force --mode athena direct
+# For data
+xAH_run.py --extraOptions="--isData" --files=>>DAOD_EOP_FILE<< --config=$TestArea/EoverPAnalysis/scripts/xAH_EoverP.py --submitDir=test_run --force --mode athena direct
+```
+
+
 ## Setup in Release 21
 
 First setup the folders for running, building and the soruce files
 ```
 mkdir myAnalysis; cd myAnalysis
-mkdir source && mkdir run && mkdir build && mkdir run/results
+mkdir source run build run/results
 cd source
 ```
 
