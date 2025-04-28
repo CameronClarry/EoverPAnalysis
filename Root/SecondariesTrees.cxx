@@ -326,8 +326,8 @@ StatusCode SecondariesTrees :: execute ()
   m_event->retrieve(TrackParticles, m_TrackContainer.Data());
 
   // Truth particles
-  const xAOD::TruthParticleContainer* TruthParticles = 0;
-  if(!m_isData) m_event->retrieve(TruthParticles, "TruthParticles");
+  //const xAOD::TruthParticleContainer* TruthParticles = 0;
+  //if(!m_isData) m_event->retrieve(TruthParticles, "TruthParticles");
   
   // Event weights
   const xAOD::EventInfo* eventInfo = 0;
