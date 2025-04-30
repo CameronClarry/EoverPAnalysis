@@ -18,7 +18,8 @@ cd source
 
 Clone the packages that this analysis depends on. 
 ```
-git clone http://github.com/luadamek/EoverPAnalysis
+git clone https://github.com/CameronClarry/EoverPAnalysis.git
+cp EoverPAnalysis/UpperCMakeLists.txt CMakeLists.txt
 git clone http://github.com/UCATLAS/xAODAnaHelpers xAODAnaHelpers
 cd xAODAnaHelpers && git checkout aaf7fc3fde9819bcb5cc3737df0226e275110671 && cd ..
 git clone https://github.com/mattleblanc/IDTrackSel.git
