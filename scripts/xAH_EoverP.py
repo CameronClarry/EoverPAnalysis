@@ -34,7 +34,8 @@ c.algorithm("BasicEventSelection", {"m_name": "BasicEventSelection",
                                  "m_applyEventCleaningCut": True,
                                  "m_applyCoreFlagsCut": args.isData,
                                  "m_applyTriggerCut": args.isData,
-                                 "m_GRLxml": "EoverPAnalysis/data17_13TeV.periodN_DetStatus-v98-pro21-16_Unknown_PHYS_StandardGRL_All_Good_25ns_ignore_GLOBAL_LOWMU.xml",
+                                 "m_GRLxml": "EoverPAnalysis/data18_13TeV.periodAllYear_DetStatus-v105-pro22-13_Unknown_PHYS_StandardGRL_All_Good_25ns_Triggerno17e33prim_ignore_GLOBAL_LOWMU.xml",
+                                 #"m_GRLxml": "EoverPAnalysis/data17_13TeV.periodN_DetStatus-v105-pro22-13_Unknown_PHYS_StandardGRL_All_Good_25ns_ignore_GLOBAL_LOWMU.xml",
                                  "m_lumiCalcFileNames": "EoverPAnalysis/ilumicalc_histograms_HLT_mb_sptrk_341294_OflLumi-13TeV-010.root",
                                  "m_PRWFileNames": "EoverPAnalysis/ntup_prw_36102_JZ012.root",
                                  "m_triggerSelection": "HLT_mb_sptrk",
@@ -208,7 +209,7 @@ c.algorithm("TrackHistsAlgo", {"m_name": "TrackHist_" + trks_tight_isolated_vert
 			               })
 
 #### Make E/p ttree
-for track_container in [trks_loose_isolated, trks_loose_isolated_vertex]:#, trks_tight_isolated, trks_tight_isolated_vertex]:
+for track_container in [trks_loose_isolated, trks_loose_isolated_vertex, trks_tight_isolated, trks_tight_isolated_vertex]:
         # E/p histograms with LoosePrimary track selection
         c.algorithm("EoverPTreeAlgo", {"m_name": "LA_EoverP_" + track_container,
 				    "m_inTrackContainerName": track_container,
