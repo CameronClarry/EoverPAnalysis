@@ -6,13 +6,15 @@ For questions please contact: lukas.adamek[at]cern.ch, or joakim.olsson[at]cern.
 
 Package created by Joakim Olsson
 Ported to release 21 and modified by: Lukas Adamek (lukas.adamek[at]cern.ch)
+Ported to release 22 and modified by: Cameron Clarry (cameron.clarry[at]cern.ch)
 
 ## Setup in Release 22
 
 First setup the folders for running, building and the source files
 ```
+setupATLAS -c centos7
 mkdir myAnalysis; cd myAnalysis
-mkdir source run build run/results
+mkdir source build run run/results
 cd source
 ```
 
@@ -21,9 +23,9 @@ Clone the packages that this analysis depends on.
 git clone https://github.com/CameronClarry/EoverPAnalysis.git
 cp EoverPAnalysis/UpperCMakeLists.txt CMakeLists.txt
 git clone http://github.com/UCATLAS/xAODAnaHelpers xAODAnaHelpers
-cd xAODAnaHelpers && git checkout aaf7fc3fde9819bcb5cc3737df0226e275110671 && cd ..
-git clone https://github.com/mattleblanc/IDTrackSel.git
-cd IDTrackSel && git checkout 13211645b1aa6c723d4f2c0b3492d5009dde8ee5 && cd ..
+cd xAODAnaHelpers && git checkout c6e4ebfa7a64a9330be836e23a93a26b3f7aae10 && cd ..
+git clone https://github.com/CameronClarry/IDTrackSel.git
+cd IDTrackSel && git checkout r22-updates && cd ..
 asetup AnalysisBase,24.2.6,here
 cd ../build
 cmake ../source && make
@@ -33,15 +35,18 @@ cmake ../source && make
 
 The Analysis configurations are located in the scripts folder, called xAH_EoverP.py. These scripts are responsible for booking/running EoverP xAH Algorithms to create ttrees for four different track selections, and store information about calorimeter energy deposits at the cell, EM, and LCW scale. To run a test job locally, try the following lines:
 ```
-cd ../build
-source */setup.sh
-cd ../run
+setupATLAS -c centos7
+cd myAnalysis/source
+asetup
+cd ../
+source build/x86_64-centos7-gcc11-opt/setup.sh
+cd run
 # For MC
 xAH_run.py --files=>>DAOD_EOP_FILE<< --config=$TestArea/EoverPAnalysis/scripts/xAH_EoverP.py --submitDir=test_run --force --mode athena direct
 # For data
 xAH_run.py --extraOptions="--isData" --files=>>DAOD_EOP_FILE<< --config=$TestArea/EoverPAnalysis/scripts/xAH_EoverP.py --submitDir=test_run --force --mode athena direct
 ```
-
+The file which contains the ttrees has the form ``test_run/hists-*.root``, depending on your input files.
 
 ## Setup in Release 21
 

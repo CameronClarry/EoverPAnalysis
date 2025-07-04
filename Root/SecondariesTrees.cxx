@@ -98,6 +98,7 @@ StatusCode SecondariesTrees :: initialize ()
   // Output tree
   ANA_CHECK (book (TTree(TString("Tree_"+m_label).Data(), "Output Tree")) );
   TTree* t = tree (TString("Tree_"+m_label).Data());
+  wk()->addOutput( t );
 
   t->Branch("DSID",&m_DSID);
   t->Branch("weight",&m_weight);
