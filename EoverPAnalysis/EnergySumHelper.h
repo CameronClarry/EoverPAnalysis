@@ -8,80 +8,76 @@ namespace EnergySumHelper
 {
 
 // LAr barrel
-//CALOSAMPLING(PreSamplerB, 1, 0) //  0
-//CALOSAMPLING(EMB1,        1, 0) //  1
-//CALOSAMPLING(EMB2,        1, 0) //  2
-//CALOSAMPLING(EMB3,        1, 0) //  3
+//CALOSAMPLING(PreSamplerB, 1, 0) //  REMOVED
+//CALOSAMPLING(EMB1,        1, 0) //  0
+//CALOSAMPLING(EMB2,        1, 0) //  1
+//CALOSAMPLING(EMB3,        1, 0) //  2
 
 // LAr EM endcap
-//CALOSAMPLING(PreSamplerE, 0, 1) //  4
-//CALOSAMPLING(EME1,        0, 1) //  5
-//CALOSAMPLING(EME2,        0, 1) //  6
-//CALOSAMPLING(EME3,        0, 1) //  7
+//CALOSAMPLING(PreSamplerE, 0, 1) //  REMOVED
+//CALOSAMPLING(EME1,        0, 1) //  3
+//CALOSAMPLING(EME2,        0, 1) //  4
+//CALOSAMPLING(EME3,        0, 1) //  5
 
 // Hadronic endcap
-//CALOSAMPLING(HEC0,        0, 1) //  8
-//CALOSAMPLING(HEC1,        0, 1) //  9
-//CALOSAMPLING(HEC2,        0, 1) // 10
-//CALOSAMPLING(HEC3,        0, 1) // 11
+//CALOSAMPLING(HEC0,        0, 1) //  6
+//CALOSAMPLING(HEC1,        0, 1) //  7
+//CALOSAMPLING(HEC2,        0, 1) // 8
+//CALOSAMPLING(HEC3,        0, 1) // 9
 
 // Tile barrel
-//CALOSAMPLING(TileBar0,    1, 0) // 12
-//CALOSAMPLING(TileBar1,    1, 0) // 13
-//CALOSAMPLING(TileBar2,    1, 0) // 14
+//CALOSAMPLING(TileBar0,    1, 0) // 10
+//CALOSAMPLING(TileBar1,    1, 0) // 11
+//CALOSAMPLING(TileBar2,    1, 0) // 12
 
 // Tile gap (ITC & scint)
-//CALOSAMPLING(TileGap1,    1, 0) // 15
-//CALOSAMPLING(TileGap2,    1, 0) // 16
-//CALOSAMPLING(TileGap3,    1, 0) // 17
+//CALOSAMPLING(TileGap1,    1, 0) // 13
+//CALOSAMPLING(TileGap2,    1, 0) // 14
+//CALOSAMPLING(TileGap3,    1, 0) // 15
 
 // Tile extended barrel
-//CALOSAMPLING(TileExt0,    1, 0) // 18
-//CALOSAMPLING(TileExt1,    1, 0) // 19
-//CALOSAMPLING(TileExt2,    1, 0) // 20
+//CALOSAMPLING(TileExt0,    1, 0) // 16
+//CALOSAMPLING(TileExt1,    1, 0) // 17
+//CALOSAMPLING(TileExt2,    1, 0) // 18
 
 // Forward EM endcap
-//CALOSAMPLING(FCAL0,       0, 1) // 21
-//CALOSAMPLING(FCAL1,       0, 1) // 22
-//CALOSAMPLING(FCAL2,       0, 1) // 23
+//CALOSAMPLING(FCAL0,       0, 1) // 19
+//CALOSAMPLING(FCAL1,       0, 1) // 20
+//CALOSAMPLING(FCAL2,       0, 1) // 21
 
 // MiniFCAL
-//CALOSAMPLING(MINIFCAL0,   0, 1) // 24
-//CALOSAMPLING(MINIFCAL1,   0, 1) // 25
-//CALOSAMPLING(MINIFCAL2,   0, 1) // 26
-//CALOSAMPLING(MINIFCAL3,   0, 1) // 27
+//CALOSAMPLING(MINIFCAL0,   0, 1) // 22
+//CALOSAMPLING(MINIFCAL1,   0, 1) // 23
+//CALOSAMPLING(MINIFCAL2,   0, 1) // 24
+//CALOSAMPLING(MINIFCAL3,   0, 1) // 25
 
 
     const std::vector<std::string> layer = {
-                        "PreSamplerB", //0
-					    "EMB1", //1
-					    "EMB2", //2
-					    "EMB3", //3
-					    "PreSamplerE", //4
-					    "EME1", //5
-					    "EME2", //6
-					    "EME3", //7
-					    "HEC0", //8
-					    "HEC1", //9
-					    "HEC2", //10
-					    "HEC3", //11
-					    "TileBar0", //12
-					    "TileBar1", //13
-					    "TileBar2", //14
-					    "TileGap1", //15
-					    "TileGap2", //16
-					    "TileGap3", //17
-					    "TileExt0", //18
-					    "TileExt1", //19
-					    "TileExt2" //20
+					    "EMB1", //0
+					    "EMB2", //1
+					    "EMB3", //2
+					    "EME1", //3
+					    "EME2", //4
+					    "EME3", //5
+					    "HEC0", //6
+					    "HEC1", //7
+					    "HEC2", //8
+					    "HEC3", //9
+					    "TileBar0", //10
+					    "TileBar1", //11
+					    "TileBar2", //12
+					    "TileGap1", //13
+					    "TileGap2", //14
+					    "TileGap3", //15
+					    "TileExt0", //16
+					    "TileExt1", //17
+					    "TileExt2" //18
                         }; //! array of all the calo layers
     
     const std::vector<std::string> layer_EM = {
-                           "PreSamplerB",
 					       "EMB1",
 					       "EMB2",
 					       "EMB3", 
-					       "PreSamplerE", 
 					       "EME1",
 					       "EME2",
 					       "EME3"
@@ -120,35 +116,31 @@ namespace EnergySumHelper
                
 
     const std::map<std::string, unsigned int> layer_to_id = {
-                                  {"PreSamplerB", 0},
-							      {"EMB1", 1},
-							      {"EMB2", 2},
-							      {"EMB3", 3},
-							      {"PreSamplerE", 4}, 
-							      {"EME1", 5},
-							      {"EME2", 6}, 
-							      {"EME3", 7},
-							      {"HEC0", 8},
-							      {"HEC1", 9},
-							      {"HEC2", 10},
-							      {"HEC3", 11},
-							      {"TileBar0", 12},
-							      {"TileBar1", 13},
-							      {"TileBar2", 14},
-							      {"TileGap1", 15},
-							      {"TileGap2", 16},
-							      {"TileGap3", 17},
-							      {"TileExt0", 18},
-							      {"TileExt1", 19},
-							      {"TileExt2", 20}
+							      {"EMB1", 0},
+							      {"EMB2", 1},
+							      {"EMB3", 2},
+							      {"EME1", 3},
+							      {"EME2", 4}, 
+							      {"EME3", 5},
+							      {"HEC0", 6},
+							      {"HEC1", 7},
+							      {"HEC2", 8},
+							      {"HEC3", 9},
+							      {"TileBar0", 10},
+							      {"TileBar1", 11},
+							      {"TileBar2", 12},
+							      {"TileGap1", 13},
+							      {"TileGap2", 14},
+							      {"TileGap3", 15},
+							      {"TileExt0", 16},
+							      {"TileExt1", 17},
+							      {"TileExt2", 18}
                                   };
 
     const std::map<unsigned int, std::string> id_to_layer = { 
-                                  {0, "PreSamplerB"},
 							      {1, "EMB1"},
 							      {2, "EMB2"},
 							      {3, "EMB3"},
-							      {4, "PreSamplerE"},
 							      {5, "EME1"},
 							      {6, "EME2"},
 							      {7, "EME3"},
