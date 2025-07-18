@@ -14,7 +14,7 @@ First setup the folders for running, building and the source files
 ```
 setupATLAS -c centos7
 mkdir myAnalysis; cd myAnalysis
-mkdir source build run run/results
+mkdir source build run
 cd source
 ```
 
@@ -47,6 +47,21 @@ xAH_run.py --files=>>DAOD_EOP_FILE<< --config=$TestArea/EoverPAnalysis/scripts/x
 xAH_run.py --extraOptions="--isData" --files=>>DAOD_EOP_FILE<< --config=$TestArea/EoverPAnalysis/scripts/xAH_EoverP.py --submitDir=test_run --force --mode athena direct
 ```
 The file which contains the ttrees has the form ``test_run/hists-*.root``, depending on your input files.
+
+## Submitting Grid Jobs in Release 21
+Grid jobs are handled by a submission script located in $TestArea/EoverPAnalysis/scripts/. The grid job script takes four arguments as input: the submission directory, a txt file with all samples listed, a descriptor to label the output, and a configuration file. As an example, the following command will submit grid jobs to run over the 361022 jet jet MC sample.
+```
+setupATLAS -c centos7
+lsetup panda
+cd myAnalysis/source
+asetup
+cd ../
+# Customize this for the production to be done
+# Data
+prun --bexec "ls;pwd;mkdir build;cd build;cmake ../source;make;cd ../" --exec "ls;pwd;source build/x86_64-centos7-gcc11-opt/setup.sh;echo %IN | tr ',' '\n' > files.txt;cat files.txt;xAH_run.py --extraOptions='--isData' --inputList --files=files.txt --config=source/EoverPAnalysis/scripts/xAH_EoverP.py --submitDir=grid-run --force --mode athena direct;cp grid-run/hist-files.root ./" --inDS <INPUT DATASET NAME> --output hist-files.root --outDS user.username.<OUTPUT DATASET NAME> --athenaTag=AnalysisBase,24.2.6 --excludeFile ./build/,./source/EoverPAnalysis/Plotting/,./run/
+# Monte Carlo
+prun --bexec "ls;pwd;mkdir build;cd build;cmake ../source;make;cd ../" --exec "ls;pwd;source build/x86_64-centos7-gcc11-opt/setup.sh;echo %IN | tr ',' '\n' > files.txt;cat files.txt;xAH_run.py --isMC --inputList --files=files.txt --config=source/EoverPAnalysis/scripts/xAH_EoverP.py --submitDir=grid-run --force --mode athena direct;cp grid-run/hist-files.root ./" --inDS <INPUT DATASET NAME> --output hist-files.root --outDS user.username.<OUTPUT DATASET NAME> --athenaTag=AnalysisBase,24.2.6 --excludeFile ./build/,./source/EoverPAnalysis/Plotting/,./run/
+```
 
 ## Setup in Release 21
 
