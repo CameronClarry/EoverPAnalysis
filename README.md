@@ -48,7 +48,7 @@ xAH_run.py --extraOptions="--isData" --files=>>DAOD_EOP_FILE<< --config=$TestAre
 ```
 The file which contains the ttrees has the form ``test_run/hists-*.root``, depending on your input files.
 
-## Submitting Grid Jobs in Release 21
+## Submitting Grid Jobs in Release 22
 Grid jobs are handled by a submission script located in $TestArea/EoverPAnalysis/scripts/. The grid job script takes four arguments as input: the submission directory, a txt file with all samples listed, a descriptor to label the output, and a configuration file. As an example, the following command will submit grid jobs to run over the 361022 jet jet MC sample.
 ```
 setupATLAS -c centos7
