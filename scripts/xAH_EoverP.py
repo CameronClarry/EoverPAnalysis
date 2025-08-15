@@ -24,7 +24,7 @@ trks_loose_isolated = trks_loose + "Isolated"
 trks_tight_isolated = trks_tight + "Isolated"
 trks_loose_isolated_vertex = trks_loose_isolated + "VertexAssociated"
 trks_tight_isolated_vertex = trks_tight_isolated + "VertexAssociated"
-radiusCuts = "025,050,075,100,125,150,175,200,225,250,275,300"
+radiusCuts = "100,200"
 
 # Set up the Basic Event Selection for 2017 low-mu data
 c.algorithm("BasicEventSelection", {"m_name": "BasicEventSelection",
